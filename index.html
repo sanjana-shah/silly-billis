@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>A Very Important Quiz 💌</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Patrick+Hand&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Floating hearts background -->
+  <div class="hearts-bg" id="heartsBg"></div>
+
+  <!-- Landing / Start Screen -->
+  <div id="startScreen" class="screen active">
+    <div class="card start-card">
+      <h1>A Very Important Quiz</h1>
+      <p class="subtitle">7 questions. 7 memes. 1 big question at the end.</p>
+      <p class="hint">Think you know the answers? Let's find out...</p>
+      <button class="btn btn-start" onclick="startGame()">Let's Go!</button>
+    </div>
+  </div>
+
+  <!-- Question Screen -->
+  <div id="questionScreen" class="screen">
+    <div class="card question-card">
+      <div class="progress-bar">
+        <div class="progress-fill" id="progressFill"></div>
+      </div>
+      <p class="question-number" id="questionNumber">Question 1 of 7</p>
+      <h2 class="question-text" id="questionText"></h2>
+      <div class="options" id="optionsContainer"></div>
+      <div class="feedback" id="feedback"></div>
+    </div>
+  </div>
+
+  <!-- Meme Reveal Screen -->
+  <div id="memeScreen" class="screen">
+    <div class="card meme-card">
+      <h2 class="meme-title" id="memeTitle">You got it! 🎉</h2>
+      <div class="meme-container">
+        <div class="meme-frame" id="memeFrame"></div>
+      </div>
+      <button class="btn btn-next" id="nextBtn" onclick="nextQuestion()">Next Question →</button>
+    </div>
+  </div>
+
+  <!-- Final Valentine Screen -->
+  <div id="valentineScreen" class="screen">
+    <div class="card valentine-card">
+      <div class="confetti-container" id="confettiContainer"></div>
+      <h1 class="valentine-title" id="valentineTitle">On a scale of 1 to 10, you're a 9...</h1>
+      <p class="valentine-subtitle" id="valentineSubtitle">...and I'm the 1 you need.</p>
+      <h2 class="valentine-question" id="valentineQuestion">Will you be my Valentine? 💘</h2>
+      <div class="valentine-buttons" id="valentineButtons">
+        <button class="btn btn-yes btn-yes-big" onclick="sayYes()">Yes!</button>
+        <button class="btn btn-yes" onclick="sayYes()">Absolutely Yes!</button>
+        <button class="btn btn-no" id="noBtn" onmouseover="dodgeButton(this)" onclick="dodgeButton(this)">No</button>
+        <button class="btn btn-yes" onclick="sayYes()">Obviously Yes!</button>
+      </div>
+      <div class="valentine-response hidden" id="valentineResponse">
+        <div class="big-heart-anim">💖</div>
+        <h1>YAAAY! 🥳💕</h1>
+        <p class="response-text">I knew you'd say yes! Best Valentine ever! 🌹</p>
+        <div class="celebration-memes" id="celebrationMemes"></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="game.js"></script>
+</body>
+</html>
