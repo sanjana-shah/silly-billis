@@ -1,0 +1,515 @@
+/* ===== Reset & Base ===== */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Fredoka', sans-serif;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #ffe0ec 0%, #ffc2d1 30%, #ffb3c6 60%, #ff8fab 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* ===== Floating Hearts Background ===== */
+.hearts-bg {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.floating-heart {
+  position: absolute;
+  bottom: -60px;
+  font-size: 24px;
+  animation: floatUp linear infinite;
+  opacity: 0.3;
+}
+
+@keyframes floatUp {
+  0% {
+    transform: translateY(0) rotate(0deg) scale(1);
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    transform: translateY(-110vh) rotate(360deg) scale(0.5);
+    opacity: 0;
+  }
+}
+
+/* ===== Screen Management ===== */
+.screen {
+  display: none;
+  position: fixed;
+  inset: 0;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+  padding: 20px;
+}
+
+.screen.active {
+  display: flex;
+}
+
+/* ===== Cards ===== */
+.card {
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(20px);
+  border-radius: 28px;
+  padding: 40px;
+  max-width: 560px;
+  width: 100%;
+  box-shadow:
+    0 20px 60px rgba(180, 60, 100, 0.15),
+    0 0 0 1px rgba(255, 255, 255, 0.6) inset;
+  text-align: center;
+  position: relative;
+  animation: cardIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+@keyframes cardIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9) translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* ===== Start Screen ===== */
+.start-card h1 {
+  font-size: 2.4rem;
+  font-weight: 700;
+  color: #c94277;
+  margin-bottom: 12px;
+  line-height: 1.2;
+}
+
+.subtitle {
+  font-size: 1.15rem;
+  color: #666;
+  margin-bottom: 8px;
+}
+
+.hint {
+  font-family: 'Patrick Hand', cursive;
+  font-size: 1.1rem;
+  color: #b06;
+  margin-bottom: 28px;
+  font-style: italic;
+}
+
+/* ===== Buttons ===== */
+.btn {
+  font-family: 'Fredoka', sans-serif;
+  border: none;
+  cursor: pointer;
+  border-radius: 50px;
+  padding: 14px 36px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.btn:hover {
+  transform: scale(1.05);
+}
+
+.btn:active {
+  transform: scale(0.97);
+}
+
+.btn-start {
+  background: linear-gradient(135deg, #ff6b9d, #c94277);
+  color: #fff;
+  font-size: 1.25rem;
+  padding: 16px 48px;
+  box-shadow: 0 8px 25px rgba(201, 66, 119, 0.35);
+}
+
+.btn-start:hover {
+  box-shadow: 0 12px 35px rgba(201, 66, 119, 0.5);
+}
+
+/* ===== Progress Bar ===== */
+.progress-bar {
+  width: 100%;
+  height: 8px;
+  background: #f0d0dd;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #ff6b9d, #c94277);
+  border-radius: 10px;
+  transition: width 0.5s ease;
+  width: 0%;
+}
+
+/* ===== Question Screen ===== */
+.question-number {
+  font-size: 0.85rem;
+  color: #b06;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 12px;
+  font-weight: 600;
+}
+
+.question-text {
+  font-size: 1.5rem;
+  color: #333;
+  margin-bottom: 28px;
+  line-height: 1.4;
+  font-weight: 600;
+}
+
+/* ===== Options ===== */
+.options {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.option-btn {
+  font-family: 'Fredoka', sans-serif;
+  background: #fff;
+  border: 2.5px solid #f0d0dd;
+  border-radius: 16px;
+  padding: 16px 20px;
+  font-size: 1.05rem;
+  color: #555;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-weight: 500;
+}
+
+.option-btn:hover {
+  border-color: #ff6b9d;
+  background: #fff5f8;
+  color: #c94277;
+  transform: translateX(4px);
+}
+
+.option-btn.correct {
+  border-color: #4ecdc4;
+  background: #e8faf8;
+  color: #2a9d8f;
+  animation: correctPop 0.4s ease;
+}
+
+.option-btn.wrong {
+  border-color: #ff6b6b;
+  background: #fff0f0;
+  color: #e74c3c;
+  animation: shake 0.4s ease;
+}
+
+.option-btn.disabled {
+  pointer-events: none;
+  opacity: 0.6;
+}
+
+@keyframes correctPop {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.04); }
+  100% { transform: scale(1); }
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-8px); }
+  75% { transform: translateX(8px); }
+}
+
+/* ===== Feedback ===== */
+.feedback {
+  margin-top: 16px;
+  font-size: 1rem;
+  font-weight: 600;
+  min-height: 24px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.feedback.show {
+  opacity: 1;
+}
+
+.feedback.correct-feedback {
+  color: #2a9d8f;
+}
+
+.feedback.wrong-feedback {
+  color: #e74c3c;
+}
+
+/* ===== Meme Screen ===== */
+.meme-title {
+  font-size: 1.6rem;
+  color: #c94277;
+  margin-bottom: 20px;
+}
+
+.meme-container {
+  margin-bottom: 24px;
+}
+
+.meme-frame {
+  background: #f9f9f9;
+  border-radius: 16px;
+  overflow: hidden;
+  min-height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.meme-frame img {
+  width: 100%;
+  max-height: 400px;
+  object-fit: contain;
+  border-radius: 16px;
+}
+
+.meme-text-display {
+  padding: 30px;
+  text-align: center;
+}
+
+.meme-text-display .meme-emoji {
+  font-size: 4rem;
+  display: block;
+  margin-bottom: 16px;
+}
+
+.meme-text-display .meme-caption {
+  font-size: 1.3rem;
+  color: #555;
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+.meme-text-display .meme-subcaption {
+  font-size: 1rem;
+  color: #999;
+  margin-top: 8px;
+  font-family: 'Patrick Hand', cursive;
+}
+
+.btn-next {
+  background: linear-gradient(135deg, #4ecdc4, #2a9d8f);
+  color: #fff;
+  box-shadow: 0 6px 20px rgba(78, 205, 196, 0.35);
+}
+
+/* ===== Valentine Screen ===== */
+.valentine-card {
+  max-width: 620px;
+  padding: 50px 40px;
+  overflow: hidden;
+}
+
+.valentine-title {
+  font-size: 2rem;
+  color: #c94277;
+  margin-bottom: 4px;
+  line-height: 1.3;
+}
+
+.valentine-subtitle {
+  font-size: 1.3rem;
+  color: #e06;
+  margin-bottom: 28px;
+  font-family: 'Patrick Hand', cursive;
+}
+
+.valentine-question {
+  font-size: 1.8rem;
+  color: #333;
+  margin-bottom: 24px;
+}
+
+.valentine-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+}
+
+.btn-yes {
+  background: linear-gradient(135deg, #ff6b9d, #c94277);
+  color: #fff;
+  box-shadow: 0 6px 20px rgba(201, 66, 119, 0.3);
+}
+
+.btn-yes-big {
+  font-size: 1.3rem;
+  padding: 18px 44px;
+}
+
+.btn-no {
+  background: #eee;
+  color: #999;
+  font-size: 0.85rem;
+  padding: 10px 20px;
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+.btn-no:hover {
+  transform: scale(0.8) rotate(10deg);
+}
+
+/* ===== Valentine Response ===== */
+.valentine-response {
+  text-align: center;
+}
+
+.valentine-response h1 {
+  font-size: 2.5rem;
+  color: #c94277;
+  margin-bottom: 12px;
+}
+
+.response-text {
+  font-size: 1.2rem;
+  color: #666;
+  margin-bottom: 24px;
+  font-family: 'Patrick Hand', cursive;
+}
+
+.big-heart-anim {
+  font-size: 5rem;
+  animation: heartBeat 1s ease infinite;
+  display: inline-block;
+  margin-bottom: 12px;
+}
+
+@keyframes heartBeat {
+  0%, 100% { transform: scale(1); }
+  15% { transform: scale(1.15); }
+  30% { transform: scale(1); }
+  45% { transform: scale(1.1); }
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* ===== Confetti ===== */
+.confetti-container {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.confetti-piece {
+  position: absolute;
+  top: -20px;
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+  animation: confettiFall linear forwards;
+}
+
+@keyframes confettiFall {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(600px) rotate(720deg);
+    opacity: 0;
+  }
+}
+
+/* ===== Celebration Memes ===== */
+.celebration-memes {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 16px;
+}
+
+.mini-meme {
+  font-size: 2.5rem;
+  background: #fff5f8;
+  border-radius: 12px;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: popIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+.mini-meme:nth-child(1) { animation-delay: 0.1s; }
+.mini-meme:nth-child(2) { animation-delay: 0.2s; }
+.mini-meme:nth-child(3) { animation-delay: 0.3s; }
+.mini-meme:nth-child(4) { animation-delay: 0.4s; }
+.mini-meme:nth-child(5) { animation-delay: 0.5s; }
+.mini-meme:nth-child(6) { animation-delay: 0.6s; }
+
+@keyframes popIn {
+  from {
+    transform: scale(0);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 600px) {
+  .card {
+    padding: 28px 20px;
+    border-radius: 22px;
+  }
+
+  .start-card h1 {
+    font-size: 1.8rem;
+  }
+
+  .question-text {
+    font-size: 1.25rem;
+  }
+
+  .valentine-title {
+    font-size: 1.5rem;
+  }
+
+  .valentine-question {
+    font-size: 1.4rem;
+  }
+
+  .btn-yes-big {
+    font-size: 1.1rem;
+    padding: 14px 32px;
+  }
+
+  .valentine-response h1 {
+    font-size: 1.8rem;
+  }
+}
