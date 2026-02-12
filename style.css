@@ -6,9 +6,9 @@
 }
 
 body {
-  font-family: 'Fredoka', sans-serif;
+  font-family: 'Franklin Gothic', 'Franklin Gothic Medium', sans-serif;
   min-height: 100vh;
-  background: linear-gradient(135deg, #ffe0ec 0%, #ffc2d1 30%, #ffb3c6 60%, #ff8fab 100%);
+  background: linear-gradient(135deg, #f5f0e8 0%, #ede6dd 50%, #e8ddd3 100%);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -26,11 +26,7 @@ body {
 }
 
 .floating-heart {
-  position: absolute;
-  bottom: -60px;
-  font-size: 24px;
-  animation: floatUp linear infinite;
-  opacity: 0.3;
+  display: none;
 }
 
 @keyframes floatUp {
@@ -64,15 +60,15 @@ body {
 
 /* ===== Cards ===== */
 .card {
-  background: rgba(255, 255, 255, 0.92);
+  background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(20px);
   border-radius: 28px;
-  padding: 40px;
-  max-width: 560px;
+  padding: 50px;
+  max-width: 700px;
   width: 100%;
   box-shadow:
-    0 20px 60px rgba(180, 60, 100, 0.15),
-    0 0 0 1px rgba(255, 255, 255, 0.6) inset;
+    0 20px 60px rgba(150, 130, 110, 0.2),
+    0 0 0 1px rgba(255, 255, 255, 0.8) inset;
   text-align: center;
   position: relative;
   animation: cardIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
@@ -93,28 +89,28 @@ body {
 .start-card h1 {
   font-size: 2.4rem;
   font-weight: 700;
-  color: #c94277;
+  color: #a85444;
   margin-bottom: 12px;
   line-height: 1.2;
 }
 
 .subtitle {
   font-size: 1.15rem;
-  color: #666;
+  color: #6b5d52;
   margin-bottom: 8px;
 }
 
 .hint {
   font-family: 'Patrick Hand', cursive;
   font-size: 1.1rem;
-  color: #b06;
+  color: #8b6f54;
   margin-bottom: 28px;
   font-style: italic;
 }
 
 /* ===== Buttons ===== */
 .btn {
-  font-family: 'Fredoka', sans-serif;
+  font-family: 'Franklin Gothic', 'Franklin Gothic Medium', sans-serif;
   border: none;
   cursor: pointer;
   border-radius: 50px;
@@ -133,22 +129,22 @@ body {
 }
 
 .btn-start {
-  background: linear-gradient(135deg, #ff6b9d, #c94277);
+  background: linear-gradient(135deg, #a85444, #8b4d38);
   color: #fff;
   font-size: 1.25rem;
   padding: 16px 48px;
-  box-shadow: 0 8px 25px rgba(201, 66, 119, 0.35);
+  box-shadow: 0 8px 25px rgba(168, 84, 68, 0.35);
 }
 
 .btn-start:hover {
-  box-shadow: 0 12px 35px rgba(201, 66, 119, 0.5);
+  box-shadow: 0 12px 35px rgba(168, 84, 68, 0.5);
 }
 
 /* ===== Progress Bar ===== */
 .progress-bar {
   width: 100%;
   height: 8px;
-  background: #f0d0dd;
+  background: #e8ddd3;
   border-radius: 10px;
   overflow: hidden;
   margin-bottom: 20px;
@@ -156,7 +152,7 @@ body {
 
 .progress-fill {
   height: 100%;
-  background: linear-gradient(90deg, #ff6b9d, #c94277);
+  background: linear-gradient(90deg, #a85444, #8b4d38);
   border-radius: 10px;
   transition: width 0.5s ease;
   width: 0%;
@@ -165,7 +161,7 @@ body {
 /* ===== Question Screen ===== */
 .question-number {
   font-size: 0.85rem;
-  color: #b06;
+  color: #8b6f54;
   text-transform: uppercase;
   letter-spacing: 2px;
   margin-bottom: 12px;
@@ -174,50 +170,102 @@ body {
 
 .question-text {
   font-size: 1.5rem;
-  color: #333;
+  color: #6b5d52;
   margin-bottom: 28px;
   line-height: 1.4;
   font-weight: 600;
 }
 
-/* ===== Options ===== */
+/* ===== Options & Answer Input ===== */
 .options {
   display: flex;
   flex-direction: column;
   gap: 12px;
 }
 
-.option-btn {
-  font-family: 'Fredoka', sans-serif;
+.answer-input-wrapper {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.answer-input {
+  flex: 1;
+  font-family: 'Franklin Gothic', 'Franklin Gothic Medium', sans-serif;
   background: #fff;
-  border: 2.5px solid #f0d0dd;
+  border: 2.5px solid #e8ddd3;
   border-radius: 16px;
   padding: 16px 20px;
   font-size: 1.05rem;
-  color: #555;
+  color: #6b5d52;
+  transition: all 0.2s ease;
+}
+
+.answer-input:focus {
+  outline: none;
+  border-color: #a85444;
+  background: #faf8f5;
+  box-shadow: 0 0 0 3px rgba(168, 84, 68, 0.1);
+}
+
+.answer-input::placeholder {
+  color: #bbb;
+}
+
+.answer-input:disabled {
+  background: #f5f5f5;
+  color: #999;
+  cursor: not-allowed;
+}
+
+.btn-submit {
+  background: linear-gradient(135deg, #a85444, #8b4d38);
+  color: #fff;
+  padding: 16px 32px;
+  white-space: nowrap;
+  box-shadow: 0 6px 20px rgba(168, 84, 68, 0.3);
+}
+
+.btn-submit:hover {
+  box-shadow: 0 8px 28px rgba(168, 84, 68, 0.45);
+}
+
+.btn-submit.disabled {
+  pointer-events: none;
+  opacity: 0.6;
+}
+
+.option-btn {
+  font-family: 'Franklin Gothic', 'Franklin Gothic Medium', sans-serif;
+  background: #fff;
+  border: 2.5px solid #e8ddd3;
+  border-radius: 16px;
+  padding: 16px 20px;
+  font-size: 1.05rem;
+  color: #6b5d52;
   cursor: pointer;
   transition: all 0.2s ease;
   font-weight: 500;
 }
 
 .option-btn:hover {
-  border-color: #ff6b9d;
-  background: #fff5f8;
-  color: #c94277;
+  border-color: #a85444;
+  background: #faf8f5;
+  color: #8b4d38;
   transform: translateX(4px);
 }
 
 .option-btn.correct {
-  border-color: #4ecdc4;
-  background: #e8faf8;
-  color: #2a9d8f;
+  border-color: #c8d9c3;
+  background: #f0f5ed;
+  color: #6b9070;
   animation: correctPop 0.4s ease;
 }
 
 .option-btn.wrong {
-  border-color: #ff6b6b;
-  background: #fff0f0;
-  color: #e74c3c;
+  border-color: #b8755f;
+  background: #faf4f1;
+  color: #8b4d38;
   animation: shake 0.4s ease;
 }
 
@@ -253,17 +301,17 @@ body {
 }
 
 .feedback.correct-feedback {
-  color: #2a9d8f;
+  color: #6b9070;
 }
 
 .feedback.wrong-feedback {
-  color: #e74c3c;
+  color: #8b4d38;
 }
 
 /* ===== Meme Screen ===== */
 .meme-title {
   font-size: 1.6rem;
-  color: #c94277;
+  color: #a85444;
   margin-bottom: 20px;
 }
 
@@ -302,7 +350,7 @@ body {
 
 .meme-text-display .meme-caption {
   font-size: 1.3rem;
-  color: #555;
+  color: #6b5d52;
   font-weight: 600;
   line-height: 1.5;
 }
@@ -315,9 +363,9 @@ body {
 }
 
 .btn-next {
-  background: linear-gradient(135deg, #4ecdc4, #2a9d8f);
-  color: #fff;
-  box-shadow: 0 6px 20px rgba(78, 205, 196, 0.35);
+  background: linear-gradient(135deg, #c8d9c3, #a8c7a0);
+  color: #6b5d52;
+  box-shadow: 0 6px 20px rgba(200, 217, 195, 0.35);
 }
 
 /* ===== Valentine Screen ===== */
@@ -329,21 +377,21 @@ body {
 
 .valentine-title {
   font-size: 2rem;
-  color: #c94277;
+  color: #a85444;
   margin-bottom: 4px;
   line-height: 1.3;
 }
 
 .valentine-subtitle {
   font-size: 1.3rem;
-  color: #e06;
+  color: #8b6f54;
   margin-bottom: 28px;
   font-family: 'Patrick Hand', cursive;
 }
 
 .valentine-question {
   font-size: 1.8rem;
-  color: #333;
+  color: #6b5d52;
   margin-bottom: 24px;
 }
 
@@ -355,9 +403,9 @@ body {
 }
 
 .btn-yes {
-  background: linear-gradient(135deg, #ff6b9d, #c94277);
+  background: linear-gradient(135deg, #a85444, #8b4d38);
   color: #fff;
-  box-shadow: 0 6px 20px rgba(201, 66, 119, 0.3);
+  box-shadow: 0 6px 20px rgba(168, 84, 68, 0.3);
 }
 
 .btn-yes-big {
@@ -385,13 +433,13 @@ body {
 
 .valentine-response h1 {
   font-size: 2.5rem;
-  color: #c94277;
+  color: #a85444;
   margin-bottom: 12px;
 }
 
 .response-text {
   font-size: 1.2rem;
-  color: #666;
+  color: #6b5d52;
   margin-bottom: 24px;
   font-family: 'Patrick Hand', cursive;
 }
@@ -453,7 +501,7 @@ body {
 
 .mini-meme {
   font-size: 2.5rem;
-  background: #fff5f8;
+  background: #faf8f5;
   border-radius: 12px;
   width: 60px;
   height: 60px;

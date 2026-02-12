@@ -1,10 +1,10 @@
 // ===== Questions Data =====
 const questions = [
   {
-    question: "What's the universal cure for a bad day?",
-    options: ["A nap", "A hug", "Complaining", "Scrolling TikTok"],
-    correct: 1,
+    question: "What was our first lunch date location?",
+    answer: "Subway",
     meme: {
+      image: null,
       emoji: "🤗",
       caption: "When the hug hits different",
       subcaption: "Serotonin levels: 📈📈📈"
@@ -13,9 +13,9 @@ const questions = [
   },
   {
     question: "What do you call two birds in love?",
-    options: ["Lovebirds", "Tweethearts", "Feathered soulmates", "Wingmates"],
-    correct: 1,
+    answer: "tweethearts",
     meme: {
+      image: null,
       emoji: "🐦💕🐦",
       caption: "Tweethearts be like:",
       subcaption: "*tweets romantically*"
@@ -24,14 +24,9 @@ const questions = [
   },
   {
     question: "What did the phone say to the WiFi?",
-    options: [
-      "\"You complete me\"",
-      "\"Stop buffering my love\"",
-      "\"I'm feeling a connection\"",
-      "\"Can I get your number?\""
-    ],
-    correct: 2,
-    meme: {
+    answer: "connection",
+    meimage: null,
+      me: {
       emoji: "📱💫📶",
       caption: "Full bars of love, baby",
       subcaption: "Connection: Strong & Stable ✅"
@@ -40,9 +35,9 @@ const questions = [
   },
   {
     question: "What's the most romantic shape?",
-    options: ["A circle (endless love)", "A heart", "A star", "A triangle (love triangle??)"],
-    correct: 1,
-    meme: {
+    answer: "heart",
+    meimage: null,
+      me: {
       emoji: "❤️",
       caption: "Heart: the OG romantic shape since forever",
       subcaption: "Mathematicians: \"Actually it's a cardioid...\" 🤓"
@@ -51,13 +46,8 @@ const questions = [
   },
   {
     question: "Roses are red, violets are blue...",
-    options: [
-      "\"...sugar is sweet, and so are you\"",
-      "\"...I can't rhyme, but I like you\"",
-      "\"...I forgot the rest, but hey what's up\"",
-      "\"...this poem is overused, just like my feelings for you\""
-    ],
-    correct: 1,
+    animage: null,
+      swer: "love",
     meme: {
       emoji: "🌹😅",
       caption: "When you're bad at poetry but great at vibes",
@@ -67,8 +57,8 @@ const questions = [
   },
   {
     question: "What's the key to a perfect date?",
-    options: ["Good looks", "Good conversation", "Good food", "Good memes"],
-    correct: 2,
+    animage: null,
+      swer: "food",
     meme: {
       emoji: "🍕🍣🍰",
       caption: "The way to someone's heart is through their stomach",
@@ -113,66 +103,79 @@ function loadQuestion() {
   document.getElementById('progressFill').style.width = `${((currentQuestion) / 7) * 100}%`;
 
   const container = document.getElementById('optionsContainer');
-  container.innerHTML = '';
-
-  q.options.forEach((opt, i) => {
-    const btn = document.createElement('button');
-    btn.className = 'option-btn';
-    btn.textContent = opt;
-    btn.onclick = () => selectOption(i);
-    container.appendChild(btn);
-  });
+  container.innerHTML = `
+    <div class="answer-input-wrapper">
+      <input type="text" id="answerInput" class="answer-input" placeholder="Your answer here..." />
+      <button class="btn btn-submit" onclick="submitAnswer()">Submit</button>
+    </div>
+  `;
 
   const feedback = document.getElementById('feedback');
   feedback.className = 'feedback';
   feedback.textContent = '';
+
+  // Focus on input and allow Enter key submission
+  const input = document.getElementById('answerInput');
+  input.focus();
+  input.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') {
+      submitAnswer();
+    }
+  });
 }
 
-// ===== Select Option =====
-function selectOption(index) {
+// ===== Submit Answer =====
+function submitAnswer() {
   const q = questions[currentQuestion];
-  const buttons = document.querySelectorAll('.option-btn');
+  const input = document.getElementById('answerInput');
+  const userAnswer = input.value.trim().toLowerCase();
   const feedback = document.getElementById('feedback');
+  const submitBtn = document.querySelector('.btn-submit');
 
-  // Disable all buttons
-  buttons.forEach(b => b.classList.add('disabled'));
-
-  if (index === q.correct) {
-    buttons[index].classList.add('correct');
-    feedback.textContent = q.feedback;
-    feedback.className = 'feedback show correct-feedback';
+  if (userAnswer === q.answer.toLowerCase()) {
+    // Correct answer - disable input and proceed to meme
+    input.disabled = true;
+    submitBtn.disabled = true;
+    submitBtn.classList.add('disabled');
+    
     score++;
 
-    // Show meme after a brief delay
+    // Show meme immediately
     setTimeout(() => {
       showMeme(q.meme);
-    }, 1200);
+    }, 300);
   } else {
-    buttons[index].classList.add('wrong');
-    buttons[q.correct].classList.add('correct');
-    feedback.textContent = "Not quite! But the right answer is highlighted 😉";
-    feedback.className = 'feedback show wrong-feedback';
-
-    // Still show the meme (be generous!)
+    // Incorrect answer - show feedback and allow retry
+    feedback.className = 'feedback';
+    feedback.textContent = '';
+    
+    // Small delay to allow the class change to settle, then add back the show class
     setTimeout(() => {
-      showMeme(q.meme);
-    }, 1500);
+      feedback.textContent = `Not quite! Try again 😉`;
+      feedback.className = 'feedback show wrong-feedback';
+    }, 10);
   }
 }
 
 // ===== Show Meme =====
 function showMeme(meme) {
   const frame = document.getElementById('memeFrame');
-  frame.innerHTML = `
-    <div class="meme-text-display">
-      <span class="meme-emoji">${meme.emoji}</span>
-      <div class="meme-caption">${meme.caption}</div>
-      <div class="meme-subcaption">${meme.subcaption}</div>
-    </div>
-  `;
+  
+  // Display image if available, otherwise fall back to emoji/text
+  if (meme.image) {
+    frame.innerHTML = `<img src="${meme.image}" alt="Meme" />`;
+  } else {
+    frame.innerHTML = `
+      <div class="meme-text-display">
+        <span class="meme-emoji">${meme.emoji}</span>
+        <div class="meme-caption">${meme.caption}</div>
+        <div class="meme-subcaption">${meme.subcaption}</div>
+      </div>
+    `;
+  }
 
   const title = document.getElementById('memeTitle');
-  title.textContent = score === currentQuestion + 1 ? "You got it! 🎉" : "Here's your meme anyway! 😄";
+  title.textContent = "You got it! 🎉";
 
   const nextBtn = document.getElementById('nextBtn');
   if (currentQuestion === 5) {
