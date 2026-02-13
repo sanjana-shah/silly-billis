@@ -6,7 +6,7 @@
   <title>A Very Important Quiz 💌</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Patrick+Hand&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -17,7 +17,7 @@
   <div id="startScreen" class="screen active">
     <div class="card start-card">
       <h1>A Very Important Quiz</h1>
-      <p class="subtitle">7 questions. 7 memes. 1 big question at the end.</p>
+      <p class="subtitle">7 questions. 7 memes.</p>
       <p class="hint">Think you know the answers? Let's find out...</p>
       <button class="btn btn-start" onclick="startGame()">Let's Go!</button>
     </div>
@@ -51,19 +51,18 @@
   <div id="valentineScreen" class="screen">
     <div class="card valentine-card">
       <div class="confetti-container" id="confettiContainer"></div>
-      <h1 class="valentine-title" id="valentineTitle">On a scale of 1 to 10, you're a 9...</h1>
-      <p class="valentine-subtitle" id="valentineSubtitle">...and I'm the 1 you need.</p>
+      <!-- <h1 class="valentine-title" id="valentineTitle">On a scale of 1 to 10, you're a 9...</h1>
+      <p class="valentine-subtitle" id="valentineSubtitle">...and I'm the 1 you need.</p> -->
       <h2 class="valentine-question" id="valentineQuestion">Will you be my Valentine? 💘</h2>
       <div class="valentine-buttons" id="valentineButtons">
-        <button class="btn btn-yes btn-yes-big" onclick="sayYes()">Yes!</button>
-        <button class="btn btn-yes" onclick="sayYes()">Absolutely Yes!</button>
-        <button class="btn btn-no" id="noBtn" onmouseover="dodgeButton(this)" onclick="dodgeButton(this)">No</button>
-        <button class="btn btn-yes" onclick="sayYes()">Obviously Yes!</button>
+        <button class="btn btn-yes" onclick="sayYes()">Yes!</button>
+        <a href="https://youtu.be/spkjUTy48C8?si=odHMdJ5srsenEW7q" class="btn btn-no" id="noLink" target="_blank" rel="noopener noreferrer">No</a>
+        <button class="btn btn-maybe" id="maybeBtn" onmouseover="dodgeButton(this)" onclick="dodgeButton(this)">Maybe</button>
       </div>
       <div class="valentine-response hidden" id="valentineResponse">
         <div class="big-heart-anim">💖</div>
         <h1>YAAAY! 🥳💕</h1>
-        <p class="response-text">I knew you'd say yes! Best Valentine ever! 🌹</p>
+        <p class="response-text">Correct Answer!! Happy Valentine's Day Dumbass!! </p>
         <div class="celebration-memes" id="celebrationMemes"></div>
       </div>
     </div>

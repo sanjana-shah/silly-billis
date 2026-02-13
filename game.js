@@ -4,7 +4,7 @@ const questions = [
     question: "What was our first lunch date location?",
     answer: "Subway",
     meme: {
-      image: null,
+      image: "images/image1.jpeg",
       emoji: "🤗",
       caption: "When the hug hits different",
       subcaption: "Serotonin levels: 📈📈📈"
@@ -12,10 +12,10 @@ const questions = [
     feedback: "Correct! A hug fixes everything 🤗"
   },
   {
-    question: "What do you call two birds in love?",
-    answer: "tweethearts",
+    question: "What was the name of our team for the Mystery Rooms?",
+    answer: "Ghost Shahs",
     meme: {
-      image: null,
+      image: "images/image6.jpeg",
       emoji: "🐦💕🐦",
       caption: "Tweethearts be like:",
       subcaption: "*tweets romantically*"
@@ -23,10 +23,10 @@ const questions = [
     feedback: "Tweethearts! Get it?? 🐦"
   },
   {
-    question: "What did the phone say to the WiFi?",
-    answer: "connection",
-    meimage: null,
-      me: {
+    question: "Which one of the cats is my favorite?",
+    answer: "Yash",
+    meme: {
+      image: "images/image2.jpeg",
       emoji: "📱💫📶",
       caption: "Full bars of love, baby",
       subcaption: "Connection: Strong & Stable ✅"
@@ -34,38 +34,39 @@ const questions = [
     feedback: "The connection is STRONG 📶"
   },
   {
-    question: "What's the most romantic shape?",
-    answer: "heart",
-    meimage: null,
-      me: {
+    question: "Event where we took my wallet photo?",
+    answer: "Garba",
+    meme: {
+      image: "images/image7.jpeg",
       emoji: "❤️",
       caption: "Heart: the OG romantic shape since forever",
       subcaption: "Mathematicians: \"Actually it's a cardioid...\" 🤓"
     },
     feedback: "Obviously a heart! ❤️"
   },
-  {
-    question: "Roses are red, violets are blue...",
-    animage: null,
-      swer: "love",
+    {
+    question: "When I was crying about LDR at your apartment, which one of the cats cracked me up?",
+    answer: "Peanut",
     meme: {
-      emoji: "🌹😅",
-      caption: "When you're bad at poetry but great at vibes",
-      subcaption: "Roses are red, violets are blue, I can't rhyme... 🫠"
-    },
-    feedback: "Honesty is the best poetry 😌"
-  },
-  {
-    question: "What's the key to a perfect date?",
-    animage: null,
-      swer: "food",
-    meme: {
+      image: "images/image5.jpeg",
       emoji: "🍕🍣🍰",
       caption: "The way to someone's heart is through their stomach",
       subcaption: "Food > Everything. No debates. 🤤"
     },
     feedback: "Food is the love language we all speak 🍕"
+  },
+  {
+    question: "What is the renewal date on our contract? (DD/MM/YYYY)",
+    answer: "31/03/2027",
+    meme: {
+      image: "images/image4.jpeg",
+      emoji: "🌹😅",
+      caption: "When you're bad at poetry but great at vibes",
+      subcaption: "Roses are red, violets are blue, I can't rhyme... 🫠"
+    },
+    feedback: "Honesty is the best poetry 😌"
   }
+
 ];
 
 // ===== State =====
@@ -253,16 +254,27 @@ function dodgeButton(btn) {
 
 // ===== Say Yes =====
 function sayYes() {
-  document.getElementById('valentineButtons').classList.add('hidden');
-  document.getElementById('valentineTitle').classList.add('hidden');
-  document.getElementById('valentineSubtitle').classList.add('hidden');
-  document.getElementById('valentineQuestion').classList.add('hidden');
-  document.getElementById('valentineResponse').classList.remove('hidden');
+  const vb = document.getElementById('valentineButtons');
+  if (vb) vb.classList.add('hidden');
+
+  const vt = document.getElementById('valentineTitle');
+  if (vt) vt.classList.add('hidden');
+
+  const vs = document.getElementById('valentineSubtitle');
+  if (vs) vs.classList.add('hidden');
+
+  const vq = document.getElementById('valentineQuestion');
+  if (vq) vq.classList.add('hidden');
+
+  const vr = document.getElementById('valentineResponse');
+  if (vr) vr.classList.remove('hidden');
 
   // Show celebration mini-memes
   const celebrationEmojis = ['🥰', '💐', '🍫', '💌', '🎉', '💕'];
   const container = document.getElementById('celebrationMemes');
-  container.innerHTML = celebrationEmojis.map(e => `<div class="mini-meme">${e}</div>`).join('');
+  if (container) {
+    container.innerHTML = celebrationEmojis.map(e => `<div class="mini-meme">${e}</div>`).join('');
+  }
 
   // More confetti!
   launchConfetti();

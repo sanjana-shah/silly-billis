@@ -107,7 +107,7 @@ body {
 }
 
 .hint {
-  font-family: 'Patrick Hand', cursive;
+  font-family: 'Poppins', sans-serif;
   font-size: 1.1rem;
   color: #555555;
   margin-bottom: 28px;
@@ -372,7 +372,7 @@ body {
   font-size: 1rem;
   color: #555555;
   margin-top: 8px;
-  font-family: 'Patrick Hand', cursive;
+  font-family: 'Poppins', sans-serif;
 }
 
 .btn-next {
@@ -402,7 +402,7 @@ body {
   font-size: 1.3rem;
   color: #555555;
   margin-bottom: 28px;
-  font-family: 'Patrick Hand', cursive;
+  font-family: 'Poppins', sans-serif;
   font-weight: 400;
 }
 
@@ -433,6 +433,21 @@ body {
 }
 
 .btn-no {
+  background: #F7C948;
+  color: #222222;
+  font-size: 1rem;
+  padding: 14px 28px;
+  text-decoration: none;
+  display: inline-block;
+  border: 2px solid #F7C948;
+}
+
+.btn-no:hover {
+  background: #E6B800;
+  border-color: #E6B800;
+}
+
+.btn-maybe {
   background: #F8F8F8;
   color: #888888;
   font-size: 0.85rem;
@@ -442,7 +457,7 @@ body {
   border: 2px solid #EAEAEA;
 }
 
-.btn-no:hover {
+.btn-maybe:hover {
   transform: scale(0.8) rotate(10deg);
 }
 
@@ -463,7 +478,7 @@ body {
   font-size: 1.2rem;
   color: #555555;
   margin-bottom: 24px;
-  font-family: 'Patrick Hand', cursive;
+  font-family: 'Poppins', sans-serif;
   font-weight: 400;
 }
 
